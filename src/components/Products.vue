@@ -1,46 +1,55 @@
 <template>
-    <div>
-        <h1>PRODUCTS</h1>
-        <div v-if="showingFilters">
-            <button @click="resetFilters">RESET</button>
-        </div>
-        <div>
-            <ul id="products">
-                <li v-for="product in this.$store.getters.products" :key="product.slug" class="product">
-                    <h1>{{ product.name }}</h1>
-                    <img :src="product.images[0]" :alt="product.name">
-                </li>
-            </ul>
-            <div v-if="loading && !reachedEnd">Loading...</div>
-            <div id="scroll-monitor"></div>
-        </div>
-    </div>
+    <v-content>
+        <v-container fluid>
+            <ProductDetail v-if="detail.active" v-bind="detail.product"/>
+            <v-row v-else>
+                <v-container>
+                    <Filters/>
+                    <v-row>
+                        <ProductPreview
+                                v-for="product in this.$store.getters.products"
+                                :key="product.slug"
+                                :slug="product.slug"
+                                :name="product.name"
+                                :image="product.images[0]"
+                        />
+                    </v-row>
+                </v-container>
+            </v-row>
+            <v-row v-if="loading.products && !reachedEnd">
+                <v-col sm="12" class="text-center">
+                    <v-progress-circular size="60" indeterminate color="primary"></v-progress-circular>
+                    <div class="mt-4">
+                        <b>Načítání produktů</b>
+                    </div>
+                </v-col>
+            </v-row>
+            <div id="scroll-monitor"/>
+        </v-container>
+    </v-content>
 </template>
-<style>
-    #products {
-        display: flex;
-        flex-flow: row wrap;
-    }
-
-    #products .product img {
-        width: 300px;
-        height: 300px;
-    }
-</style>
 <script>
     import {mapState, mapActions} from 'vuex'
     import scrollMonitor from 'scrollmonitor';
+    import ProductPreview from './ProductPreview';
+    import ProductDetail from './ProductDetail';
+    import Filters from './Filters';
 
     export default {
+        components: {
+            ProductPreview,
+            ProductDetail,
+            Filters
+        },
         computed: mapState({
-            loading: state => state.productsLoading,
+            detail: state => state.detail,
+            loading: state => state.loading,
             reachedEnd: state => state.reachedEnd,
-            showingFilters: state => state.showingFilter
         }),
         methods: {
-            ...mapActions(["loadProducts", "nextPage", "resetFilters"]),
+            ...mapActions(["loadProducts", "nextPage"]),
             loadNextPage() {
-                if (!this.loading && !this.reachedEnd) {
+                if (!this.loading.products && !this.reachedEnd) {
                     this.$store.dispatch('nextPage');
                 }
             }

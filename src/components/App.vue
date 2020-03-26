@@ -1,16 +1,9 @@
 <template>
-    <div id="app">
+    <v-app dark>
         <Menu/>
         <Products/>
-    </div>
+    </v-app>
 </template>
-<style>
-    #app {
-        display: flex;
-        flex-flow: row nowrap;
-    }
-</style>
-
 <script>
     import Menu from './Menu';
     import Products from './Products';
