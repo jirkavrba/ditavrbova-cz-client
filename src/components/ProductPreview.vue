@@ -1,5 +1,5 @@
 <template>
-    <v-col sm="12" md="4" lg="3">
+    <v-col sm="6" md="4" lg="3">
         <v-img
                 :src="image"
                 aspect-ratio="1"

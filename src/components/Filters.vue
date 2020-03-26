@@ -4,7 +4,7 @@
             <v-alert dense dark>
                 <v-row align="center">
                     <v-col class="grow">
-                        <v-chip v-for="item of filter.items" :key="item.label" color="primary" text-color="black" class="mr-2">
+                        <v-chip v-for="item of filter.items" :key="item.label" color="primary" text-color="black" class="ma-2">
                             <b>{{ item.label }}:</b> {{ item.value}}
                         </v-chip>
                     </v-col>

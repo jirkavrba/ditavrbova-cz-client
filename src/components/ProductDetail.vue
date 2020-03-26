@@ -9,7 +9,7 @@
             </v-col>
         </div>
         <div v-else>
-            <v-row>
+            <v-row class="flex-sm-column-reverse flex-md-row">
                 <v-col sm="12" md="6">
                     <v-row class="align-center">
                         <v-btn icon @click="$store.commit('hideProductDetails')" color="primary" width="50"
@@ -72,7 +72,7 @@
                             next-icon="chevron_right"
                             delimiter-icon="lens">
                         <v-carousel-item :src="image"/>
-                        <v-carousel-item v-for="(_image, i) in images" :key="i" :src="_image">
+                        <v-carousel-item v-for="(_image, i) in images" :key="i" :src="_image" eager="true">
                             <v-responsive aspect-ratio="1:1"/>
                         </v-carousel-item>
                     </v-carousel>
