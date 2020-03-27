@@ -41,12 +41,12 @@
             </v-list-item>
             <v-list-item dense>
                 <v-list-item-icon>
-                    <v-icon>share</v-icon>
+                    <v-icon>sms</v-icon>
                 </v-list-item-icon>
                 <v-list-item-content>
                     <v-list-item-subtitle>
-                        <a href="https://www.facebook.com" target="_blank">
-                        Facebook
+                        <a href="https://www.messenger.com/t/dita.vrbova1" target="_blank">
+                            Messenger
                         </a>
                     </v-list-item-subtitle>
                 </v-list-item-content>
