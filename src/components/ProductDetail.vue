@@ -28,10 +28,12 @@
                 <v-col sm="12" md="6">
                     <v-row class="align-center d-flex d-md-none text-center">
                         <v-col>
-                            <v-btn icon @click="$store.commit('hideProductDetails')" color="primary" width="50"
-                                   height="50"
-                                   class="mr-2">
-                                <v-icon size="30">arrow_back</v-icon>
+                            <v-btn @click="$store.commit('hideProductDetails')"
+                                   color="primary"
+                                   class="mb-5"
+                                   text>
+                                <v-icon size="30">close</v-icon>
+                                Zavřít
                             </v-btn>
                             <h1 class="grow display-1 text--primary">{{ name }}</h1>
                         </v-col>

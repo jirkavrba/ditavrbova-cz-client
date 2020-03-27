@@ -91,14 +91,16 @@
                 app
                 clipped-left
                 flat
+                color="red darken-3"
         >
             <v-app-bar-nav-icon @click.stop="menuExpanded = !menuExpanded">
                 <v-icon>menu</v-icon>
             </v-app-bar-nav-icon>
-            <v-toolbar-title class="mr-12 align-center">
-                <span class="title">Keramika</span>
-            </v-toolbar-title>
+            <v-toolbar-title>Keramika</v-toolbar-title>
             <v-spacer/>
+            <v-toolbar-items>
+                <img src="/logo.svg" alt="" class="ma-2 pr-5">
+            </v-toolbar-items>
         </v-app-bar>
 
         <Products/>
