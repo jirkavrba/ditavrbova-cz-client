@@ -8,17 +8,18 @@
                     </v-list-item-subtitle>
                 </v-list-item-content>
             </v-list-item>
-            <v-list-item>
-                <v-list-item-avatar size="64">
-                    <v-img src="https://socialveo.co/frontend/assets/images/default-user.png"></v-img>
+            <v-list-item class="d-flex align-center justify-center">
+                <v-list-item-avatar size="128">
+                    <v-img src="/avatar.jpg"></v-img>
                 </v-list-item-avatar>
             </v-list-item>
-            <v-list-item>
+            <v-list-item dense>
+                <v-list-item-icon></v-list-item-icon>
                 <v-list-item-content>
                     <v-list-item-title>Dita Vrbová</v-list-item-title>
                 </v-list-item-content>
             </v-list-item>
-            <v-list-item>
+            <v-list-item dense>
                 <v-list-item-icon>
                     <v-icon>phone</v-icon>
                 </v-list-item-icon>
@@ -26,7 +27,7 @@
                     <v-list-item-subtitle>777 931 603</v-list-item-subtitle>
                 </v-list-item-content>
             </v-list-item>
-            <v-list-item>
+            <v-list-item dense>
                 <v-list-item-icon>
                     <v-icon>email</v-icon>
                 </v-list-item-icon>
@@ -35,7 +36,7 @@
                 </v-list-item-content>
             </v-list-item>
             <v-divider></v-divider>
-            <v-list-item>
+            <v-list-item dense>
                 <v-list-item-content>
                     <v-list-item-subtitle>
                         Výběr kategorie a typu
@@ -43,7 +44,7 @@
                 </v-list-item-content>
             </v-list-item>
             <v-divider></v-divider>
-            <v-list-item @click="resetFilters()">
+            <v-list-item @click="resetFilters()" dense>
                 <v-list-item-icon>
                     <v-icon>home</v-icon>
                 </v-list-item-icon>
@@ -58,7 +59,7 @@
                     <b>Načítání kategorií</b>
                 </div>
             </div>
-            <v-list nav v-else expand>
+            <v-list nav v-else expand dense>
                 <v-list v-for="category of categories" :key="category.slug">
                     <v-list-item @click="loadCategory(category)">
                         <v-list-item-icon>
