@@ -13,7 +13,7 @@ export default new Vuetify({
         dark: true,
         themes: {
             dark: {
-                primary: colors.teal.accent3
+                primary: colors.red.darken1
             }
         }
     }

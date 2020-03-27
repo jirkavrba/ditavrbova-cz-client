@@ -1,9 +1,9 @@
 <template>
-    <v-col sm="6" md="4" lg="3">
+    <v-col cols="12" sm="6" md="3" lg="2">
         <v-img
                 :src="image"
                 aspect-ratio="1"
-                class="dark"
+                class="product--preview"
                 @click="$store.dispatch('viewProductDetails', slug)"
         >
             <template v-slot:placeholder>
@@ -18,6 +18,11 @@
         </v-img>
     </v-col>
 </template>
+<style>
+    .product--preview {
+        border-radius: 5px;
+    }
+</style>
 <script>
     export default {
         props: [

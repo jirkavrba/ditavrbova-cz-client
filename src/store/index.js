@@ -16,9 +16,11 @@ export default new Vuex.Store({
             detail: true,
         },
 
-        // Parameters for loading and caching next page
-        nextPageUrl: "/products", // Default url, no sorting
-        cachedPages: {},
+        // Path used to load current resource
+        path: "/products", // Default url, no sorting
+
+        // All products
+        products: [],
 
         // Detail of the product
         detail: {
@@ -31,51 +33,33 @@ export default new Vuex.Store({
             items: null,
             active: false,
         },
-
-        // Current page
-        page: 1,
-
-        // Has the listing reached the end
-        reachedEnd: false,
-    },
-    getters: {
-        products: state => {
-            return Array.prototype.concat(...Object.values(state.cachedPages));
-        }
     },
     mutations: {
         showProducts(state, products) {
-            Vue.set(state.cachedPages, state.page, products);
+            Vue.set(state, 'products', products);
             Vue.set(state.loading, 'products', false);
         },
         showMenu(state, categories) {
+            Vue.set(state, 'categories', categories);
             Vue.set(state.loading, 'menu', false);
-            state.categories = categories;
-        },
-        nextPage(state) {
-            Vue.set(state.loading, 'products', true);
-            state.page++;
-        },
-        reachedEnd(state) {
-            state.reachedEnd = true;
         },
         reset(state) {
-            state.page = 1;
+            Vue.set(state, 'path', "/products");
+            Vue.set(state.filter, 'active', false);
             Vue.set(state.detail, 'active', false);
-            Vue.set(state, 'cachedPages', {});
             Vue.set(state.loading, 'products', true);
         },
         resetFilters(state) {
-            state.nextPageUrl = "/products";
+            Vue.set(state, 'path', "/products");
             Vue.set(state.filter, 'active', false);
         },
         loadCategory(state, payload) {
-            state.nextPageUrl = "/category/" + payload.slug;
+            Vue.set(state, 'path', "/category/" + payload.slug);
             Vue.set(state.filter, 'active', true);
             Vue.set(state.filter, 'items', [{label: 'Kategorie', value: payload.name}]);
         },
         loadType(state, payload) {
-            state.nextPageUrl = "/type/" + payload.slug;
+            Vue.set(state, 'path', "/type/" + payload.slug);
             Vue.set(state.filter, 'active', true);
             Vue.set(state.filter, 'items', [
                 {label: 'Kategorie', value: payload.category},
@@ -104,42 +88,29 @@ export default new Vuex.Store({
                 .then(response => context.commit('showMenu', response));
         },
         loadProducts: (context) => {
-            // If page is already loaded
-            if (typeof context.state.cachedPages[context.state.page] !== 'undefined' || context.state.page < 1)
-                return;
-
-            fetch(BASE_URL + context.state.nextPageUrl + "/" + context.state.page)
+            fetch(BASE_URL + context.state.path)
                 .then(response => response.json())
-                .then(response => context.commit('showProducts', response))
-                .catch(() => context.commit('reachedEnd'));
+                .then(response => context.commit('showProducts', response));
         },
         loadCategory: (context, payload) => {
-            if (context.state.nextPageUrl !== "/category/" + payload.slug) {
+            if (context.state.path !== "/category/" + payload.slug) {
                 context.commit('reset');
                 context.commit('loadCategory', payload);
             }
 
-            context.commit('hideProductDetails');
             context.dispatch("loadProducts");
         },
         loadType: (context, payload) => {
-            if (context.state.loadingUrl !== "/type/" + payload.slug) {
+            if (context.state.path !== "/type/" + payload.slug) {
                 context.commit('reset');
                 context.commit('loadType', payload);
             }
 
-            context.commit('hideProductDetails');
             context.dispatch("loadProducts");
         },
         resetFilters: (context) => {
-            context.commit('hideProductDetails');
-            context.commit('resetFilters');
             context.commit('reset');
             context.dispatch("loadProducts");
-        },
-        nextPage: (context) => {
-            context.commit('nextPage');
-            context.dispatch('loadProducts');
         },
         viewProductDetails: (context, product) => {
             context.commit('loadProductDetails');
