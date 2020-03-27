@@ -1,11 +1,11 @@
 import Vue from 'vue';
 import App from './components/App.vue';
 import store from './store';
-import keepScroll from 'vue-keep-scroll';
+import KeepScrollPosition from 'vue-keep-scroll-position';
 
 Vue.config.productionTip = false;
 
-Vue.use(keepScroll);
+Vue.use(KeepScrollPosition);
 
 import vuetify from "./plugins/vuetify";
 

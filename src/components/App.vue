@@ -43,6 +43,15 @@
                 </v-list-item-content>
             </v-list-item>
             <v-divider></v-divider>
+            <v-list-item @click="resetFilters()">
+                <v-list-item-icon>
+                    <v-icon>home</v-icon>
+                </v-list-item-icon>
+                <v-list-item-content>
+                    <v-list-item-title>Hlavní stránka</v-list-item-title>
+                </v-list-item-content>
+            </v-list-item>
+            <v-divider></v-divider>
             <div v-if="loading" class="text-center mt-5">
                 <v-progress-circular size="40" indeterminate color="primary"></v-progress-circular>
                 <div class="mt-4">
@@ -106,13 +115,14 @@
             "loadCategory",
             "loadType",
             "resetFilters",
+            "reset",
         ]),
         created() {
             this.loadMenu()
         },
         data() {
             return {
-                menuExpanded: window.innerWidth >= 600,
+                menuExpanded: window.innerWidth >= 1265,
             }
         },
         computed: {

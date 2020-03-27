@@ -25,7 +25,7 @@ export default new Vuex.Store({
         // Detail of the product
         detail: {
             product: null,
-            visible: false,
+            active: false,
         },
 
         // Filtering by category or type
@@ -37,6 +37,7 @@ export default new Vuex.Store({
     mutations: {
         showProducts(state, products) {
             Vue.set(state, 'products', products);
+            Vue.set(state.detail, 'active', false);
             Vue.set(state.loading, 'products', false);
         },
         showMenu(state, categories) {

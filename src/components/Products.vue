@@ -1,8 +1,14 @@
 <template>
     <v-content>
         <v-container fluid>
-            <ProductDetail v-if="detail.active" v-bind="detail.product"/>
-            <v-row v-else>
+            <v-overlay
+                    :absolute="false"
+                    :value="detail.active"
+                    opacity="0.98"
+            >
+                <ProductDetail v-if="detail.active" v-bind="detail.product"/>
+            </v-overlay>
+            <v-row v-keep-scroll-position>
                 <v-col>
                     <v-container>
                         <Filters/>
@@ -29,6 +35,13 @@
         </v-container>
     </v-content>
 </template>
+<style>
+    .v-overlay__content {
+        width: 100%;
+        height: 100%;
+        overflow-y: scroll;
+    }
+</style>
 <script>
     import {mapState, mapActions} from 'vuex'
     import ProductPreview from './ProductPreview';

@@ -37,15 +37,15 @@
                         </v-col>
                     </v-row>
                     <v-row class="align-center d-none d-md-flex" no-gutters>
+                        <v-col class="grow">
+                            <h1 class="grow display-1 text--primary">{{ name }}</h1>
+                        </v-col>
                         <v-col class="shrink">
                             <v-btn icon @click="$store.commit('hideProductDetails')" color="primary" width="50"
                                    height="50"
                                    class="mr-2">
-                                <v-icon size="30">arrow_back</v-icon>
+                                <v-icon size="30">close</v-icon>
                             </v-btn>
-                        </v-col>
-                        <v-col class="grow">
-                            <h1 class="grow display-1 text--primary">{{ name }}</h1>
                         </v-col>
                     </v-row>
                     <v-card dark class="mt-4">
