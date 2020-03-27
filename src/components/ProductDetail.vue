@@ -19,8 +19,8 @@
                             prev-icon="chevron_left"
                             next-icon="chevron_right"
                             delimiter-icon="lens">
-                        <v-carousel-item :src="image"/>
-                        <v-carousel-item v-for="(_image, i) in images" :key="i" :src="_image">
+                        <v-carousel-item :src="image" transition="fade" reverse-transition="fade"/>
+                        <v-carousel-item v-for="(_image, i) in images" :key="i" :src="_image" transition="fade" reverse-transition="fade">
                             <v-responsive aspect-ratio="1:1"/>
                         </v-carousel-item>
                     </v-carousel>
