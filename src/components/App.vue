@@ -9,16 +9,16 @@
                 </v-list-item-content>
             </v-list-item>
             <v-list-item class="d-flex align-center justify-center">
-                <v-list-item-avatar size="128">
+                <v-list-item-avatar size="128" style="margin: 0;">
                     <v-img src="/avatar.jpg"></v-img>
                 </v-list-item-avatar>
             </v-list-item>
             <v-list-item dense>
-                <v-list-item-icon></v-list-item-icon>
-                <v-list-item-content>
-                    <v-list-item-title>Dita Vrbová</v-list-item-title>
+                <v-list-item-content class="text-center">
+                    <v-list-item-title style="font-size: 20px;">Dita Vrbová</v-list-item-title>
                 </v-list-item-content>
             </v-list-item>
+            <v-divider></v-divider>
             <v-list-item dense>
                 <v-list-item-icon>
                     <v-icon>phone</v-icon>
@@ -32,21 +32,29 @@
                     <v-icon>email</v-icon>
                 </v-list-item-icon>
                 <v-list-item-content>
-                    <v-list-item-subtitle>dita.vrbova@volny.cz</v-list-item-subtitle>
+                    <v-list-item-subtitle>
+                        <a href="mailto:dita.vrbova@volny.cz">
+                            dita.vrbova@volny.cz
+                        </a>
+                    </v-list-item-subtitle>
                 </v-list-item-content>
             </v-list-item>
-            <v-divider></v-divider>
             <v-list-item dense>
+                <v-list-item-icon>
+                    <v-icon>share</v-icon>
+                </v-list-item-icon>
                 <v-list-item-content>
                     <v-list-item-subtitle>
-                        Výběr kategorie a typu
+                        <a href="https://www.facebook.com" target="_blank">
+                        Facebook
+                        </a>
                     </v-list-item-subtitle>
                 </v-list-item-content>
             </v-list-item>
             <v-divider></v-divider>
             <v-list-item @click="resetFilters()" dense>
                 <v-list-item-icon>
-                    <v-icon>home</v-icon>
+                    <v-icon color="primary">home</v-icon>
                 </v-list-item-icon>
                 <v-list-item-content>
                     <v-list-item-title>Hlavní stránka</v-list-item-title>
@@ -63,7 +71,7 @@
                 <v-list v-for="category of categories" :key="category.slug">
                     <v-list-item @click="loadCategory(category)">
                         <v-list-item-icon>
-                            <v-icon>arrow_forward</v-icon>
+                            <v-icon color="primary">arrow_forward</v-icon>
                         </v-list-item-icon>
                         <v-list-item-content>
                             <v-list-item-title>{{ category.name }}</v-list-item-title>
@@ -77,7 +85,7 @@
                                          category: category.name
                                      })">
                         <v-list-item-icon>
-                            <v-icon>subdirectory_arrow_right</v-icon>
+                            <v-icon color="primary">subdirectory_arrow_right</v-icon>
                         </v-list-item-icon>
                         <v-list-item-content>
                             <v-list-item-title>{{ type.name }}</v-list-item-title>
@@ -92,16 +100,18 @@
                 app
                 clipped-left
                 flat
-                color="red darken-3"
+                color="red darken-4"
+                prominent
+                dense
         >
             <v-app-bar-nav-icon @click.stop="menuExpanded = !menuExpanded">
                 <v-icon>menu</v-icon>
             </v-app-bar-nav-icon>
-            <v-toolbar-title>Keramika</v-toolbar-title>
-            <v-spacer/>
-            <v-toolbar-items>
-                <img src="/logo.svg" alt="" class="ma-2 pr-5">
+            <v-toolbar-items class="d-flex justify-center align-center">
+                <img src="/logo.svg" alt="" class="ma-2">
+                <v-toolbar-title style="align-self: center !important; padding-bottom: 0 !important;">Keramika</v-toolbar-title>
             </v-toolbar-items>
+            <v-spacer/>
         </v-app-bar>
 
         <Products/>

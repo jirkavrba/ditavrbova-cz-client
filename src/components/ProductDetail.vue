@@ -52,21 +52,29 @@
                     </v-row>
                     <v-card dark class="mt-4">
                         <v-card-text>
+<!--                            <v-row>-->
+<!--                                <v-col>-->
+<!--                                    <h2 class="title text&#45;&#45;primary">-->
+<!--                                        <v-icon>shopping_cart</v-icon>-->
+<!--                                        Dostupnost-->
+<!--                                    </h2>-->
+<!--                                    <div class="ma-2">-->
+<!--                                        <v-chip color="teal accent-3" text-color="black" class="mr-2" v-if="in_stock">-->
+<!--                                            <v-icon class="mr-2">check_circle</v-icon>-->
+<!--                                            Skladem-->
+<!--                                        </v-chip>-->
+<!--                                        <v-chip color="dark" v-else>-->
+<!--                                            Na objednání-->
+<!--                                        </v-chip>-->
+<!--                                    </div>-->
+<!--                                </v-col>-->
+<!--                            </v-row>-->
                             <v-row>
                                 <v-col>
                                     <h2 class="title text--primary">
-                                        <v-icon>shopping_cart</v-icon>
-                                        Dostupnost
+                                        <v-icon>local_offer</v-icon>
+                                        Katalogové číslo: {{ this.$attrs.id }}
                                     </h2>
-                                    <div class="ma-2">
-                                        <v-chip color="teal accent-3" text-color="black" class="mr-2" v-if="in_stock">
-                                            <v-icon class="mr-2">check_circle</v-icon>
-                                            Skladem
-                                        </v-chip>
-                                        <v-chip color="dark" v-else>
-                                            Na objednání
-                                        </v-chip>
-                                    </div>
                                 </v-col>
                             </v-row>
                             <v-row>
@@ -75,9 +83,7 @@
                                         <v-icon>subject</v-icon>
                                         Popis
                                     </h2>
-                                    <div class="subtitle pa-2">
-                                        {{ description }}
-                                    </div>
+                                    <div class="subtitle pa-2" v-html="description.replace(/\n/g, '<br>')"></div>
                                 </v-col>
                             </v-row>
                             <v-row>
